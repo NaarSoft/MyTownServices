@@ -200,6 +200,25 @@ echo 'Not bad, you scored average';
         return view('test');
     }
 
+	 public function haward()
+    {
+        return view('haward');
+    }
+	
+	 public function greenville()
+    {
+        return view('greenville');
+    }
+	
+	
+	public function stanton()
+    {
+        return view('stanton');
+    }
+	
+	
+	
+	
     /**
      * Return Agency view.
      *
