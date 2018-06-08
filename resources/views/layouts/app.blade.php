@@ -126,7 +126,7 @@
 				<div class="col-sm-4">
 				
                     <div class="footer-logo">
-                        <a href="{{URL::to('home')}}"><img src="{{ asset('public/assets/images/mtsnewLogo.png')}}" alt="" height="200" width="200"></a>
+                        <a href="{{URL::to('home')}}"><img src="{{ asset('public/assets/images/my-town-footer-logo.png')}}" alt="" height="200" width="200"></a>
                     </div>
 					</div>
 					
@@ -160,7 +160,7 @@
             <div class="col-sm-4">
                 <div class="single-footer-item-padding-left">
                     <h2>Locations</h2>
-  <i class="fa fa-map-marker" style="font-size:16px">&nbsp;&nbsp;Carson City </i>&nbsp;<i class="fa fa-map-marker" style="font-size:16px">&nbsp;&nbsp;Greenville </i>&nbsp;<i class="fa fa-map-marker" style="font-size:16px">&nbsp;&nbsp;Howard City</i>&nbsp;<i class="fa fa-map-marker" style="font-size:16px">&nbsp;Stanton </i>
+  <i class="fa fa-map-marker" style="font-size:16px"></i>&nbsp;&nbsp;Carson City &nbsp;<i class="fa fa-map-marker" style="font-size:16px"></i>&nbsp;&nbsp;Greenville &nbsp;<i class="fa fa-map-marker" style="font-size:16px"></i>&nbsp;&nbsp;Howard City&nbsp;<i class="fa fa-map-marker" style="font-size:16px"></i>&nbsp;Stanton 
                 </div>
 				                <div class="single-footer-item-padding-left">
                     <h2>Contact Us</h2>
