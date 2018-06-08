@@ -1,0 +1,147 @@
+.small {
+    font-size: 14px;
+}
+
+.container-position{
+    position:  relative;
+}
+
+#div_appointment .tab-content {
+    color : white;
+    background-color: #231718;
+    padding: 22px 20px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+
+#div_appointment .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    background-color: #65494c;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+#div_appointment {
+    position: absolute;
+    z-index: 999;
+    right:15px;
+    top:100px;
+    width:510px;
+    font-family: "Lato",Helvetica,Arial,sans-serif;
+}
+
+#div_appointment input[type="submit"]{
+    letter-spacing: 0.08em;
+    font-weight: 900;
+    border-radius: 0;
+}
+
+#div_appointment input[type="submit"]:hover{
+    background-color: #f87900;
+}
+
+.single-slider-text-img{
+    width: 100px !important;
+    padding-top:15px !important;
+}
+
+.underline-img{
+    padding-top: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+p.agency-name{
+ height: 60px;
+}
+
+.home-page-sliders .owl-stage-outer {
+    height: 500px;
+}
+
+#owl-agency .owl-item {
+    padding:7px ;
+    text-align: center;
+}
+
+#owl-agency .owl-prev{
+    top: 20%;
+    left: -30px;
+    position: absolute;
+    font-size: 70px;
+}
+
+#owl-agency .owl-next{
+    top: 20%;
+    right: -30px;
+    position: absolute;
+    font-size: 70px;
+}
+#div_appointment label{
+    font-weight: normal;
+    font-size:12px;
+    color:#cccccc;
+}
+
+.header{
+    font-weight: lighter; font-size: 34px;
+}
+
+.footer-bottom-left a, .footer-bottom-left a:hover {
+    color:#F87900;
+}
+
+.service-content{
+    font-size: 15px;
+    line-height: 1.8em;
+}
+
+.agency-content{
+    font-size: 15px;
+    line-height: 1.8em;
+    margin-top:10px;
+}
+
+.single-volunteer-info input[type="text"], .single-volunteer-info input[type="email"],
+.single-volunteer-info input[type="number"], .single-contact-info input[type="text"], .single-contact-info input[type="email"]
+{
+    margin-bottom:0px !important;
+}
+
+.agency-logo {
+    width:150px;
+    padding-left:10px;
+}
+
+.print a, .print a:link, .print a:hover, .print a:visited{
+    text-decoration: none;
+}
+.print span
+{
+    font-size: 16px !important;    vertical-align: middle;
+}
+
+.logo-background{
+    background: #F6F6F6;
+    border-radius: 50%;
+}
+
+.form-horizontal .light-font{
+    padding-top: 7px;
+}
+
+.link{
+    text-decoration:underline;
+    color: #0000ff;
+}

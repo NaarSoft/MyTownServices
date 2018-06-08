@@ -1,0 +1,526 @@
+/* Medium Layout: 1280px. */
+
+@media only screen and (min-width: 992px) and (max-width: 1200px) {
+    .mainmenu ul li a {
+        padding: 30px 18px;
+    }
+    .donate-now-btn,
+    .donate-now,
+    .read-more-btn {
+        width: 200px;
+        left: -80px
+    }
+    .donation-left .donate-now-btn {
+        width: 200px;
+    }
+    .single-slider-text {
+        padding-left: 30px;
+    }
+    .single-header-info {
+        padding-left: 58px;
+    }
+    .single-footer-item-padding-left {
+        padding-left: 30px;
+    }
+    .news-info span i.fa {
+        font-size: 11px;
+        padding-right: 6px;
+    }
+    .news-info span {
+        font-size: 12px;
+        margin-right: 0px;
+    }
+    .single-news-item-bottom h2 {
+        font-size: 15px;
+        padding-bottom: 20px;
+        padding-top: 15px;
+    }
+    .donate-now,
+    .read-more-btn {
+        text-transform: uppercase;
+        margin-top: 17px
+    }
+    .single-event-people-img img {
+        height: 155px;
+    }
+    .cta-text h2 {
+        font-size: 34px;
+    }
+    .single-cause-item-2 h2 {
+        font-size: 17px;
+    }
+    .footer-news-text a {
+        color: #d1d1d1;
+        font-size: 16px;
+        font-weight: 600;
+    }
+    .event-items .owl-nav div {
+        left: -25px;
+    }
+    .event-items .owl-nav div.owl-next {
+        right: -25px;
+    }
+    .single-event-img span {
+        left: 18px;
+    }
+    .footer-top-area {
+        padding: 90px 0 60px;
+    }
+    /* Event Page Start */
+    .single-event-text {
+        padding: 30px 23px 30px 44%;
+    }
+    .single-event-text > h2 {
+        font-size: 17px;
+    }
+    .single-comment-img img {
+        max-width: 100%;
+    }
+    /* Event Page End */
+}
+
+
+/* Tablet Layout: 768px. */
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+    .single-header-info img {
+        height: 36px;
+        left: 15px;
+        width: 35px;
+    }
+    .single-header-info p,
+    .single-header-info a {
+        font-size: 12px;
+    }
+    .single-header-info h2 {
+        font-size: 13px
+    }
+    .single-header-info p {
+        font-size: 12px;
+    }
+    .mainmenu ul li a {
+        font-size: 12px;
+        padding: 25px 10px;
+    }
+    .donate-now-btn {
+        left: -120px;
+        position: relative;
+        width: 200px;
+    }
+    .slider-top-btn .donate-now {
+        font-size: 8px;
+        margin-top: 26px;
+        padding: 9px 13px;
+    }
+    .featured-text .progress {
+        height: 10px;
+    }
+    .single-choose-item h2 {
+        font-size: 21px;
+    }
+    .donation-left h2 {
+        font-size: 29px;
+    }
+    .causes-left p {
+        font-size: 12px;
+    }
+    .causes-left h2 {
+        font-size: 22px;
+    }
+    .para-pading {
+        padding-top: 10px;
+    }
+    .single-cause-item h2,
+    .single-cause-item-2 h2 {
+        margin-top: 40px;
+        font-size: 16px
+    }
+    .single-cause-item p,
+    .single-cause-item-2 p {
+        font-size: 15px;
+        padding-top: 0;
+    }
+    .single-cause-item .progress {
+        height: 6px;
+    }
+    .news-info span {
+        font-size: 14px;
+        line-height: 28px
+    }
+    .single-news-item-bottom p {
+        font-size: 16px;
+        line-height: 28px;
+    }
+    .single-news-item-bottom h2 {
+        font-size: 18px;
+        line-height: 28px;
+    }
+    .single-footer-item-padding-left {
+        padding-left: 10px;
+    }
+    .single-footer-item h2 {
+        font-size: 20px
+    }
+    .footer-news-text h2 {
+        font-size: 10px;
+    }
+    .footer-news-text p {
+        font-size: 10px;
+    }
+    .single-footer-item p {
+        font-size: 12px;
+        line-height: 24px;
+    }
+    .single-footer-item a {
+        font-size: 13px;
+    }
+    .footer-social-icon {
+        margin-top: 40px;
+    }
+    .single-cause-item-2 h3 {
+        right: 23px;
+        top: 63px;
+    }
+    .cta-text h2 {
+        font-size: 25px;
+    }
+    .single-event-people-img {
+        float: none;
+    }
+    .cause-details-text-style h2 {
+        font-size: 28px;
+    }
+    .single-gallery-item {
+        height: 300px;
+    }
+    .single-event-people-info h2 {
+        font-size: 14px;
+    }
+    .single-event-people-info p {
+        font-size: 12px;
+    }
+    .single-event-people-info {
+        padding: 18px 8px 20px 45%;
+    }
+    .single-event-img span {
+        left: 33px;
+    }
+    .single-faq-item h2 {
+        font-size: 19px;
+    }
+    .contact-map-bottom {
+        padding: 20px 30px 20px 15px;
+    }
+    .contact-info p {
+        font-size: 14px;
+    }
+    .event-items .owl-nav div {
+        left: -20px;
+        width: 20px
+    }
+    .event-items .owl-nav div.owl-next {
+        right: -20px;
+        width: 20p
+    }
+    .single-key-people {
+        margin-top: 10px;
+    }
+    .single-event-img-2 h2 {}
+    .event-details-text h2,
+    .event-key h2 {
+        font-size: 30px;
+    }
+    .single-key-people-text {
+        border: 1px solid #f67800;
+        padding-left: 44%;
+    }
+    .new-volunteer-area > h2,
+    .donation-form h2,
+    .contact-form h2 {
+        line-height: 28px;
+    }
+    .single-news-item-bottom h2 {
+        padding: 10px 0;
+    }
+    .about-volunteer-item {
+        margin-bottom: 21px;
+    }
+    .about-text {
+        margin-top: 20px;
+    }
+}
+
+
+/* Mobile Layout: 320px. */
+
+@media only screen and (max-width: 767px) {
+    .menu-area {
+        display: none
+    }
+    .slicknav_menu {
+        background: transparent none repeat scroll 0 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 200px;
+        display: block;
+        z-index: 999;
+        display: block
+    }
+    .slicknav_nav {
+        background: #333 none repeat scroll 0 0;
+        position: relative;
+        z-index: 999
+    }
+    .slicknav_btn {
+        background: transparent none repeat scroll 0 0;
+        margin: 0;
+    }
+    .slicknav_menu .slicknav_menutxt {
+        display: none;
+    }
+    .single-header-info {
+        margin-top: 10px;
+    }
+    .mainmenu-wrap {
+        background: none;
+    }
+    .slider-top-btn {
+        margin-bottom: 15px;
+    }
+    .single-slider-text h2 {
+        font-size: 30px;
+    }
+    .single-slider-item {
+        height: 480px;
+    }
+    .home-page-sliders .owl-controls .owl-nav,
+    .single-event-items .owl-controls .owl-nav {
+        display: none;
+    }
+    .single-news-item {
+        margin-bottom: 30px;
+    }
+    .footer-social-icon {
+        margin-top: 33px;
+    }
+    .single-footer-item-padding-left {
+        margin-top: 30px;
+        padding-left: 0;
+    }
+    .footer-bottom-left {
+        text-align: center;
+    }
+    .footer-bottom-right {
+        text-align: center;
+    }
+    .causes-left {
+        margin-bottom: 20px;
+    }
+    .single-cause-item h3 {
+        right: 11px;
+        top: 145px;
+    }
+    .single-cause-item-2 h3 {
+        top: 131px
+    }
+    .single-volunteer-item {
+        margin-bottom: 20px;
+    }
+    .single-volunteer-item img {
+        width: 100%
+    }
+    .single-featured-img {
+        margin-bottom: 30px;
+    }
+    .donation-area {
+        background: none;
+    }
+    .donation-area:after {
+        background: none;
+    }
+    .donation-left {
+        background: #F67800 none repeat scroll 0 0;
+        padding: 30px;
+        text-align: center;
+        margin-bottom: 20px
+    }
+    .donation-right {
+        background: #1A1A1A none repeat scroll 0 0;
+        padding: 30px;
+        text-align: center;
+    }
+    .single-cause-item-2 img {
+        width: 100%;
+    }
+    .cta-text h2 {
+        font-size: 19px;
+        text-align: center
+    }
+    .cta-btn {
+        text-align: center;
+        margin-top: 20px
+    }
+    .single-event-people {
+        margin-bottom: 20px;
+    }
+    .cause-details-text-style h2 {
+        font-size: 22px;
+        margin-top: 20px;
+    }
+    .cause-details-info h2 {
+        font-size: 18px
+    }
+    .cause-details-info p {
+        font-size: 16px
+    }
+    .donation-left h2 {
+        font-size: 25px;
+    }
+    .donation-right h2 {
+        font-size: 25px;
+    }
+    .event-items .owl-nav {
+        display: none;
+    }
+    .gallery-items {
+        height: auto !important;
+    }
+    .gallery-isotope-item {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 100%
+    }
+    .single-event-img h2 {
+        font-size: 18px;
+    }
+    .single-event-text h2 {
+        font-size: 17px;
+    }
+    .single-event-text p {
+        font-size: 15px;
+    }
+    .single-event-btn {
+        padding: 20px 25px;
+    }
+    .section-title h2 {
+        font-size: 30px;
+    }
+    .event-details-map iframe {
+        width: 100%;
+        margin: 20px 0;
+    }
+    .event-details-text h2,
+    .event-key h2 {
+        font-size: 19px;
+    }
+    .single-key-people {
+        margin-top: 10px;
+    }
+    .contact-form {
+        margin-top: 30px;
+    }
+    .contact-info p {
+        font-size: 13px;
+    }
+    .single-comment-item {
+        margin-top: 20px;
+    }
+    .leave-comments-form form input[type="text"] {
+        margin-bottom: 20px;
+    }
+    .gallery-option ul li {
+        padding: 0 4px;
+    }
+    .gallery-option ul li a {
+        font-size: 14px;
+    }
+    .new-volunteer-bg::after {
+        background: none
+    }
+    .new-volunteer-area {
+        padding-left: 30px
+    }
+    .new-volunteer-area h2,
+    .donation-form h2 {
+        font-size: 16px
+    }
+    .donation-two-bg:after {
+        background: none
+    }
+    .news-info span {
+        display: inline-block;
+        margin-bottom: 5px
+    }
+    .cta-text h2 {
+        font-size: 16px;
+    }
+    .error-text input[type="text"] {
+        width: 170px
+    }
+    .error-text input[type="submit"] {
+        margin-left: -4px;
+    }
+    .about-text h2 {
+        font-size: 17px;
+        line-height: 24px;
+    }
+    .about-text {
+        margin-top: 20px;
+    }
+    .join-volunteer-text h2,
+    .donation-two-text h2 {
+        font-size: 24px;
+    }
+    .single-event-img {
+        height: 260px;
+        position: relative;
+        width: 100%;
+    }
+    .single-event-text {
+        padding: 15px;
+    }
+    .single-event-img h2::before {
+        width: 23%;
+    }
+    .single-news-item-bottom {
+        padding: 15px;
+    }
+    .footer-info {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+    .slider-text-2 {
+        color: #fff;
+        padding: 60px;
+    }
+    .cta-area {
+        padding: 40px 0;
+    }
+    .footer-bottom-left > p {
+        margin-bottom: 15px;
+    }
+}
+
+
+/* Wide Mobile Layout: 480px. */
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+    .causes-details-img img {
+        width: 100%;
+    }
+    .single-featured-img::after {
+        left: -3%;
+    }
+    .event-items .owl-nav {
+        display: none;
+    }
+    .single-event-img h2::before {
+        width: 15%;
+    }
+    .single-event-img h2 {
+        padding-right: 40px;
+    }
+}

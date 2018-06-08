@@ -1,0 +1,37 @@
+.modal {
+    overflow-y:auto;
+}
+
+/* questionnaire details (read-only) */
+.paddingTop{
+    padding-top: 10px;
+}
+.light-font{
+    font-weight: 100;
+}
+.heading
+{
+    background-color:#808080;;
+    color:#FFFFFF;
+    padding:5px;
+}
+
+#service_calendar .tooltip {
+    position: fixed;
+}
+#service_calendar .tooltip-inner {
+    max-width: none;
+    white-space: nowrap;
+    text-align: left;
+}
+
+.text-red {
+    color:#FF0000;
+}
+
+.heading-cancel-reason
+{
+    background-color:orange;
+    color:#FFFFFF;
+    padding:5px;
+}

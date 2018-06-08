@@ -1,0 +1,417 @@
+/* Custom Search and Custom Search Result Page */
+ul.question_list{
+  padding-left: 0px;
+}
+
+ul.question_list > li
+{
+  position:relative;
+  border-bottom: 1px solid #000;
+  list-style:none;
+  padding:4px 20px 4px 4px;
+  width:100%;
+  display:inline-block;
+  color: #000000;
+}
+
+ul.question_list > li:nth-child(odd) {background: #CCC}
+ul.question_list > li:nth-child(even) {background: #FFF}
+
+ul.question_list .separator{
+  font-weight:bold;
+}
+
+
+/* close button of Modal window */
+.close {
+  position: absolute;
+  right:5px; top: 0px;
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 18px;
+  color: #000000;
+  /*
+  text-shadow: 0 1px 0 #ffffff;
+  opacity: 0.1;
+  filter: alpha(opacity=20);
+  */
+  text-decoration: none;
+}
+
+.close:hover {
+  color: #000000;
+  text-decoration: none;
+  opacity: 0.8;
+  filter: alpha(opacity=40);
+  cursor: pointer;
+}
+
+.scrollable-menu {
+  height: auto;
+  width: 500px;
+  max-height: 500px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.dataTables_scrollHeadInner > .table {
+  margin-bottom:0px !important;
+}
+
+#consultant_responses_length
+{
+  display: none;
+}
+
+.table .filter-control {
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    color: #555;
+    display: block;
+    font-size: 14px;
+    height: 34px;
+    line-height: 1.42857;
+    padding: 6px 12px;
+    transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+    width: 100%;
+}
+
+.dataTables_scrollBody thead {visibility: hidden;}
+
+.dropdown-submenu .dropdown-menu {
+    min-width: 400px;
+    max-height: 400px;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+.dropdown-menu .bottom
+{
+    top:0px !important; bottom:auto !important;
+}
+
+#consultant_responses tbody td.wrap {
+    min-width: 1000px;
+    white-space: normal;
+}
+
+.required label:first-child:after
+{
+    color: Red;
+    font-size: 0.8em;
+    line-height: 14px;
+    vertical-align: top;
+    content: " *";
+}
+
+.btn-search
+{
+    margin-left: 10px;
+}
+
+.input-group-btn.margin-left button
+{
+    margin-left: 10px !important;
+}
+
+.form-horizontal .left-align
+{
+    text-align: left !important;
+}
+
+.dataTable .action-link a{
+    margin-right:5px !important;
+    margin-left:5px !important;
+    width: 10px;
+}
+
+.dataTables_filter
+{
+    width:100% !important;
+}
+
+.dataTables_filter .control-label
+{
+    padding-top:5px !important;
+}
+/*
+.dataTables_filter .form-control
+{
+    margin-right:5px !important;
+    width:95% !important;
+}
+*/
+.dataTables_filter .btn
+{
+    margin-right:0px !important;
+    margin-left:5px !important;
+}
+
+.dataTable thead tr {
+    background: rgba(52,73,94,0.94);
+    color: #ECF0F1;
+}
+
+.centered {
+    text-align: center;
+}
+
+.parsley-errors-list {
+    clear:both;
+}
+
+.grey-row{
+    background-color: #CCCCCC;
+}
+
+.bootbox-close-button {
+    margin-top:0px !important;
+}
+
+.modal-dialog .btn-primary {
+    margin-bottom:5px !important;
+}
+
+div.blockOverlay {
+    z-index: 20000 !important;
+}
+
+.sorting_disabled
+{
+    content:none !important;
+    background-image:none !important;
+}
+
+.modal-sm {
+    width: 700px !important;
+}
+
+.error-help-block
+{
+    margin-bottom:0px !important;
+}
+
+/****************************************/
+/******** Manage Contact Icons **********/
+/****************************************/
+
+.dataTable .action-link a.edit {
+    background-image: url("../images/edit-icon.png");
+    background-repeat: no-repeat;
+    height:12px;
+    padding-left:8px;
+    margin-right:2px !important;
+    opacity:0.7;
+}
+
+.dataTable .action-link a.emi-entry {
+    background-image: url("../images/emi-icon.png");
+    background-repeat: no-repeat;
+    height:12px;
+    padding-left:8px;
+    margin-right:2px !important;
+    opacity:0.7;
+}
+
+.dataTable .action-link a.edit:hover {
+    opacity:1;
+}
+
+.dataTable .action-link a.emi-entry:hover {
+    opacity:1;
+}
+
+a.emi-entry {
+    background-image: url("../images/emi-icon.png");
+    background-repeat: no-repeat;
+    height:12px;
+    padding-left:8px;
+    margin-right:2px !important;
+    opacity:0.7;
+}
+
+a.emi-entry:hover {
+    opacity:1;
+}
+
+a.emi-edit {
+    background-image: url("../images/contact-edit-icon.png");
+    background-repeat: no-repeat;
+    height:12px;
+    opacity:0.7;
+    margin-top:7px;
+}
+
+a.emi-edit:hover {
+    background:url("../images/contact-edit-icon.png") !important;
+    background-repeat: no-repeat !important;
+    opacity:1;
+}
+
+.panel_toolbox>li>a {
+    color: #5A738E;
+}
+
+#emi_title .panel_toolbox>li>a{
+    padding: 10px;
+    font-size: 1.33333333em;
+}
+
+span.link
+{
+    cursor: pointer;
+}
+
+.no-padding-left
+{
+    padding-left:0px !important;
+}
+
+.no-padding-right
+{
+    padding-right:0px !important;
+}
+
+.validation-error
+{
+    color:red;
+}
+.no-padding {
+    padding: 0 !important;
+}
+
+.content-area {
+    padding: 100px 0;
+}
+
+.navbar-right{
+    float: right;
+    margin-right: 14px;
+}
+
+.btn {
+    vertical-align: inherit;
+}
+
+.colorpicker-alpha {
+    display: none !important;
+}
+
+.colorpicker {
+    min-width: 128px !important;
+}
+
+.question-text {
+    font-weight:bold;
+    margin-top:10px;
+    margin-bottom:10px;
+}
+
+.ln_solid {
+    border-top: 1px solid #e5e5e5;
+    color: #ffffff;
+    background-color: #ffffff;
+    height: 1px;
+    margin: 20px 0;
+}
+
+.div-login{
+    background-color: #99cc66 !important;
+    border-color: #99cc66 !important;
+}
+
+.logo a img{
+    /*height: 75px;*/
+}
+
+.spn-required{
+    color: Red;
+    font-size: 0.8em;
+    line-height: 14px;
+    vertical-align: top;
+}
+
+/****************************************/
+/************** Schedule ****************/
+/****************************************/
+#tblSchedule {
+    border-collapse: collapse;
+}
+
+#tblSchedule > tbody > tr > td {
+    /*background-color: #ffffff;*/
+    border-top: 1px solid #e5e5e5;
+    height: 1px;
+    margin: 20px 20px;
+    padding-top: 20px;
+    padding-left:20px;
+}
+.step-width{
+    width: 120px;
+    background: #EEEEEE;
+    font-size: 15pt;
+    font-weight: bold;
+    padding: 20px;
+}
+
+.parsley-errors-list {
+    margin:0px;
+}
+
+/****************************************/
+/************** Manage Response *********/
+/****************************************/
+.reschedule {
+    /*background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='30' height='30'><circle cx='15' cy='15' r='10' /></svg>")  no-repeat;*/
+    background-image: url("../images/appointment.svg");
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 30px !important;
+}
+
+#service_calendar .fc-event-container{
+    padding: 20px !important;
+}
+#service_calendar .fc-event {
+     font-size: 1.5em !important;
+     text-align: center !important;
+     cursor: pointer !important;
+}
+#service_calendar .fc-scroller {
+    overflow-y: hidden !important;
+}
+
+#calendar .fc-event {
+    font-size: 1.0em;
+    font-weight: 600;
+}
+
+#response_calendar .fc-event {
+    font-size: 1.0em;
+    font-weight: 600;
+}
+
+#calendar .holiday {
+    background: lightgray;
+}
+
+#response_calendar .fc-content {
+    cursor: pointer;
+}
+
+#holidays > thead > tr > th[class*="sort"]:after{
+    content: "" !important;
+}
+
+.ui-timepicker-container a {
+    -webkit-transition: 0s !important;
+    transition: 0s !important;;
+    color: #333;
+}
+
+.ui-timepicker {
+    text-align: left !important;
+}
