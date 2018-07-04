@@ -6,7 +6,9 @@ use App\Models\Schedule;
 use Illuminate\Http\Request;
 use App\Http\Requests\SettingFormRequest;
 use App\Http\Requests\HolidayFormRequest;
+use App\Http\Requests\LocationFormRequest;
 use App\Models\Holiday;
+use App\Models\Location;
 use App\Models\Setting;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
@@ -142,5 +144,97 @@ class SettingController extends Controller
         }catch(\Exception $ex){
             Log::error('Error :'. $ex);
         }
+    }
+
+    /**
+     * Update setting and redirect to index page.
+     *
+     * @param LocationFromRequest $request
+     *
+     * @return view
+     */
+    public function addLocation(LocationFormRequest $request)
+    {
+        $location = new Location();
+        $success = $location->addLocation($request);
+        $message = $success == true ? 'Location saved successfully.' : 'Error in adding Location. Location should be unique.';
+        return response()->json(['success' => $success, 'message' => $message]);
+    }
+
+    /**
+     * Get list of locations from database.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getLocations()
+    {
+        try{
+            $location = new Location();
+            $response['data'] = $location->getLocations();
+            $response['recordCount'] = $location->getLocationsCount();
+            return response()->json(['recordsTotal'=> $response['recordCount'], 'recordsFiltered' => $response['recordCount'], 'data' => $response['data']]);
+        }catch(\Exception $ex){
+            Log::error('Error :'. $ex);
+        }
+    }
+
+    /**
+     * Delete location and return success json.
+     *
+     * @param $id
+     *
+     * @return view
+     */
+    public function deleteLocation($id)
+    {
+        $success = false;
+        try{
+            $location = Location::find($id);
+            $location->delete();
+            $success = true;
+        }catch(\Exception $ex){
+            Log::error('Error :'. $ex);
+        }
+        return response()->json(['success'=> $success]);
+    }
+
+    /**
+     * Edit Location and return data json
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function editLocation($id)
+    {
+        $success = false;
+        $locationDetails = array();
+        try{
+            $location = new Location();
+            $locationDetails = $location->getLocationDetails($id);
+            $success = true;
+        } catch(\Exception $ex){
+            Log::error('Error :'. $ex);
+        }
+        return response()->json(['success' => $success, 'data' => $locationDetails]);
+    }
+
+    public function updateLocation(LocationFormRequest $request)
+    {
+        $success = false;
+        try {
+            $location = Location::find($request->locationId);
+            if ($location) {
+                $success = $location->updateLocation($request, $request->locationId);
+                if(!$success){
+                    $message = "Error in updating location. Location should be unique.";
+                } else {
+                    $message = "Location saved successfully";
+                }
+            } else {
+                $message = "Not valid request.";
+            }
+        } catch(\Exception $ex){
+            Log::error('Error :'. $ex);
+        }
+        return response()->json(['success' => $success, 'message' => $message]);
     }
 }

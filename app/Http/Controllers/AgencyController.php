@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AgencyFormRequest;
 use App\Models\Agency;
+use App\Models\AgencyLocation;
 use App\Models\Service;
+use App\Models\Location;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
@@ -58,8 +60,17 @@ class AgencyController extends Controller
     public function edit(Request $request)
     {
         $agency = Agency::findOrFail($request->id);
+        $agencyLocationObj = new AgencyLocation();
+        $agencyLocationsData = $agencyLocationObj->getAgencyLocations($agency->id);
+        $agencyLocations = array();
+        if($agencyLocationsData){
+            foreach($agencyLocationsData as $agencyLocationRow){
+                array_push($agencyLocations, $agencyLocationRow->location_id);
+            }
+        }
         $services = Service::pluck('name', 'id')->all();
-        $data = array('agency' => $agency, 'services' => $services);
+        $locations = Location::pluck('location', 'id')->all();
+        $data = array('agency' => $agency, 'agency_locations' => $agencyLocations, 'services' => $services, 'locations' => $locations);
         return view('admin.agency.edit')->with($data);
     }
 
@@ -121,6 +132,20 @@ class AgencyController extends Controller
         $service = Service::find($request->service_id);
         $service->name = $request->service_name;
         $service->save();
+
+        //delete all agency locations
+        $agencyLocation = new AgencyLocation();
+        $agencyLocation->deleteAgencyLocations($id);
+        if(count($request->agency_locations)){
+            foreach($request->agency_locations as $agencyLocationId){
+                $data = array(
+                    'agency_id' => $id,
+                    'location_id'=> $agencyLocationId
+                );
+                $agencyLocation->addAgencyLocation($data);
+            }
+        }
+
 
         header("Cache-Control: no-store, no-cache, must-revalidate, max-age=0");
         header("Cache-Control: post-check=0, pre-check=0", false);

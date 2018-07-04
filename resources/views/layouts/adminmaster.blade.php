@@ -47,6 +47,9 @@
     <!-- Jquery Timepicker -->
     <link href="{{ URL::asset('public/assets/css/jquery.timepicker.min.css')}}" rel="stylesheet">
 
+    <!-- Jquery UI -->
+    <link href="{{ URL::asset('public/assets/vendors/jquery-ui/jquery-ui.css')}}" rel="stylesheet">
+
     <!-- jQuery -->
     <script src="{{ asset('public/assets/js/jquery-2.1.4.min.js')}}"></script>
     <script src="{{ asset('public/assets/js/jquery.cookie.js')}}"></script>
@@ -114,6 +117,9 @@
 
     <!-- Jquery Timepicker -->
     <script src="{{asset('public/assets/js/jquery.timepicker.min.js')}}"></script>
+
+    <!-- JQuery UI -->
+    <script src="{{asset('public/assets/vendors/jquery-ui/jquery-ui.js')}}"></script>
 
     <script type="text/javascript">
         var adminRoot_URL = "{{ Request::root()}}/admin";

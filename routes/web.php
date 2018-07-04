@@ -53,6 +53,11 @@ Route::group(['middleware' => ['web']], function(){
         Route::post('/setting/getHolidays', ['middleware' =>  ['permission:admin-permission'],'uses' => 'SettingController@getHolidays']);
         Route::post('/setting/addHoliday', ['middleware' =>  ['permission:admin-permission'],'as'=> 'holiday.add', 'uses' => 'SettingController@addHoliday']);
         Route::post('/setting/deleteHoliday/{id}', ['middleware' =>  ['permission:admin-permission'],'as'=> 'holiday.delete', 'uses' => 'SettingController@deleteHoliday']);
+        Route::post('/setting/getLocations', ['middleware' =>  ['permission:admin-permission'],'uses' => 'SettingController@getLocations']);
+        Route::post('/setting/addLocation', ['middleware' =>  ['permission:admin-permission'],'as'=> 'location.add', 'uses' => 'SettingController@addLocation']);
+        Route::post('/setting/deleteLocation/{id}', ['middleware' =>  ['permission:admin-permission'],'as'=> 'location.delete', 'uses' => 'SettingController@deleteLocation']);
+        Route::post('/setting/editLocation/{id}', ['middleware' =>  ['permission:admin-permission'],'as'=> 'location.edit', 'uses' => 'SettingController@editLocation']);
+        Route::post('/setting/updateLocation', ['middleware' =>  ['permission:admin-permission'],'as'=> 'location.update', 'uses' => 'SettingController@updateLocation']);
     });
 
     Route::get('admin/home', 'HomeController@index');

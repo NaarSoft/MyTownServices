@@ -1,5 +1,6 @@
 $(document).ready(function() {
     populateHolidayGrid();
+    populateLocationGrid();
     bindEvents();
 
     $('.date-picker').daterangepicker({
@@ -8,7 +9,20 @@ $(document).ready(function() {
         autoUpdateInput: false,
         dateFormat: 'm/d/Y'
     }).attr('readonly','readonly');
-})
+
+    var dialog = $( "#dialog-form" ).dialog({
+        autoOpen: false,
+        height: 250,
+        width: 350,
+        modal: true,
+        buttons: {
+            "Save": "updateLocation",
+            Cancel: function() {
+                dialog.dialog( "close" );
+            }
+        }
+    });
+});
 
 function bindEvents() {
     $('#startTimeHour').timepicker({
@@ -56,6 +70,24 @@ function bindEvents() {
             $("html, body").animate({scrollTop: 0}, "slow");
         }else{
             return false;
+        }
+    });
+
+    $("#btnSaveLocation").click(function(){
+        var is_valid = $("#form-location").valid();
+        if(is_valid){
+            saveLocation(0);
+            $("html, body").animate({scrollTop: 0}, "slow");
+        } else {
+            return false;
+        }
+    });
+
+    $("#btnUpdateLocation").click(function () {
+        var is_valid = $("#form-update-location").valid();
+        if(is_valid){
+            updateLocation(0);
+            $("html, body").animate({scrollTop: 0}, "slow");
         }
     });
 
@@ -236,4 +268,175 @@ function resetHloidayForm(){
     $('#form-holiday')[0].reset();
     $("#error_day").html('');
     $("#error_name").html('');
+}
+
+function populateLocationGrid() {
+    $('#locations').dataTable().fnDestroy();
+
+    oTable = $('#locations').dataTable({
+        "processing": true,
+        "serverSide": true,
+        "pageLength": 10,
+        "responsive": true,
+        "searching": false,
+        "paging": false,
+        "bSort": false,
+        "ajax": {
+            "url": adminRoot_URL + '/setting/getLocations',
+            "type": "POST",
+        },
+        "columns": [
+            { data: 'location', name: 'location' },
+            {
+                "class": 'centered action-link',
+                "orderable": false,
+                "data": null,
+                "render": function (data, type, full, meta) {
+                    var link = ' <a href="javascript:editLocation('+ data.id +')" class="glyphicon glyphicon-pencil" style="margin: 5px" alt="Edit" title="Edit"> </a>' +
+                        '<a href="javascript:deleteLocation('+ data.id + ')"  class="glyphicon glyphicon-remove" style="margin: 5px" alt="Delete" title="Delete" />';
+                    return link;
+                }
+            },
+        ],
+    });
+}
+
+function saveLocation(confirm){
+    $("#error_office_days").hide();
+    $.ajax({
+        "processing": true,
+        "url": "addLocation",
+        "type": "POST",
+        "dataType": "json",
+        "data": $("#form-location").serialize() + "&confirm=" + confirm,
+        success: function(response){
+            $("#div_response_setting").hide();
+
+            if(response.success == 0) {
+                $("#div_response_location").css('display', '');
+                $("#div_response_location").removeClass('alert-success').addClass('alert-warning');
+                $("#div_response_location").html(response.message);
+            }
+            else if(response.success == 1) {
+                $("#div_response_location").css('display', '');
+                $("#div_response_location").removeClass('alert-warning').addClass('alert-success');
+                $("#div_response_location").html(response.message);
+                resetLocationForm();
+                populateLocationGrid();
+            } else if(response.success == 2) {
+                bootbox.confirm(response.message, function(result) {
+                    if(result) {
+                        saveLocation(1);
+                    }
+                });
+            }
+
+            $('#div_response_location').delay(3000).slideUp(300);
+        },
+        error:function(xhr, status, error){
+            alert("Something went wrong! Please try again.");
+        },
+    });
+}
+
+function updateLocation(confirm){
+    $("#error_office_days").hide();
+
+    $.ajax({
+        "processing": true,
+        "url": adminRoot_URL + '/setting/updateLocation',
+        "type": "POST",
+        "dataType": "json",
+        "data": $("#form-update-location").serialize() + "&confirm=" + confirm,
+        success: function(response){
+            $( "#dialog-form").dialog( "close" );
+            $("#div_response_setting").hide();
+
+            if(response.success == 0) {
+                $("#div_response_location").css('display', '');
+                $("#div_response_location").removeClass('alert-success').addClass('alert-warning');
+                $("#div_response_location").html(response.message);
+            }
+            else if(response.success == 1) {
+                $("#div_response_location").css('display', '');
+                $("#div_response_location").removeClass('alert-warning').addClass('alert-success');
+                $("#div_response_location").html(response.message);
+                resetLocationForm();
+                populateLocationGrid();
+            } else if(response.success == 2) {
+                bootbox.confirm(response.message, function(result) {
+                    if(result) {
+                        saveLocation(1);
+                    }
+                });
+            }
+
+            $('#div_response_location').delay(3000).slideUp(300);
+        },
+        error:function(xhr, status, error){
+            alert("Something went wrong! Please try again.");
+        },
+    });
+}
+
+function resetLocationForm(){
+    $('#form-location')[0].reset();
+    $("#error_location").html('');
+}
+
+function deleteLocation(locationId) {
+    bootbox.confirm("Do you want to delete this location?", function(result) {
+        if(result) {
+            deleteLocationConfirmed(locationId);
+        }
+
+    });
+}
+
+function deleteLocationConfirmed(locationId) {
+    $.ajax({
+        type: "POST",
+        url: adminRoot_URL + '/setting/deleteLocation/' + locationId,
+        data:{id : locationId},
+        dataType: 'JSON',
+        cache: false,
+        beforeSend: function() {
+            blockFullUI();
+        },
+        success: function (data) {
+            if(data.success == true)
+                populateLocationGrid();
+            else
+                bootbox.alert('Some error occurred.');
+        },
+        complete: function() {
+            $.unblockUI();
+        }
+    });
+}
+
+function editLocation(locationId) {
+    $.ajax({
+        type: "POST",
+        url: adminRoot_URL + '/setting/editLocation/' + locationId,
+        data:{id : locationId},
+        dataType: 'JSON',
+        cache: false,
+        beforeSend: function() {
+            blockFullUI();
+        },
+        success: function (response) {
+            if(response.success == true) {
+                $("form#form-update-location #locationId").val(response.data.id);
+                $("form#form-update-location #name").val(response.data.location);
+                //popup edit model box
+                $( "#dialog-form" ).dialog( "open" );
+            } else {
+                bootbox.alert('Some error occurred.');
+            }
+        },
+        complete: function() {
+            $.unblockUI();
+        }
+    });
 }
