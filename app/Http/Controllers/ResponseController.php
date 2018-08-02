@@ -6,6 +6,7 @@ use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Response;
+use App\Models\ResponseDetail;
 use App\Models\Setting;
 use App\Models\Question;
 use App\Models\Service;
@@ -79,28 +80,29 @@ class ResponseController extends Controller
     public function getQuestionnaireData(Request $request){
         try{
             $responseId = $request->response_id;
-            $view_response = false;
-            $services = Service::all();
-
-            $question = new Question();
-            if(Auth::user()->roles->first()->name == 'admin'){
-
-                $questions = $question->getQuestionsByServiceId($responseId, 9);
+            //get responder details
+            $response = Response::find($responseId);
+            if($response){
+                $responseDetailObj = new ResponseDetail();
+                $responseDetails = $responseDetailObj->getResponseDetails($responseId);
+                $responseBasicInfo = array();
+                $servicesRequested = array();
+                if($responseDetails){
+                    foreach($responseDetails as $row){
+                        if(!$row->service_ids){
+                            $responseBasicInfo[] = $row;
+                        } else {
+                            $servicesRequested[] = $row;
+                        }
+                    }
+                }
+                $data = array(
+                    'response' => $response,
+                    'respondent_basic_info' => $responseBasicInfo,
+                    'requested_services' => $servicesRequested
+                );
+                return view('questionnaire._questionnaire_view')->with($data)->render();
             }
-            elseif(Auth::user()->roles->first()->name == 'agency'){
-                $service = new Service();
-                $service = $service->getServiceInfoByAgencyId(Auth::user()->agency_id);
-                $view_response = true;
-                $questions = $question->getQuestionsByServiceId($responseId, $service->service_id, $view_response);
-            }
-
-            $response = Response::where('id', '=',$responseId)->get()->first();
-
-            $questionDetail = new QuestionDetail();
-            $questionDetails = $questionDetail->getQuestionDetailsByServiceId();
-
-            $data = array('response' => $response, 'questions' => $questions, 'services' => $services, 'question_details' => $questionDetails, 'responseId' => $responseId, 'view_response'=> $view_response);
-            return view('questionnaire._questionnaire_view')->with($data)->render();
         }catch(\Exception $ex){
             Log::error('Error :'. $ex);
         }

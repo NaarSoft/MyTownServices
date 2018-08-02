@@ -8,6 +8,9 @@ use App\Models\Setting;
 use App\Models\User;
 use App\Models\Agency;
 use App\Models\Holiday;
+use App\Models\Location;
+use App\Models\AgencyLocation;
+use App\Models\UserLocation;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,7 +32,13 @@ class ScheduleController extends Controller
         //$holidays = array_column($holidays, 'day');
         //$holidays = json_encode($holidays);
         //$holidays = str_replace("\/","-", $holidays);
-        $data = array('setting' => $setting, 'agencies' => $agencies, 'agency_users' => array(), 'holidays' => json_encode($holidays));
+        $data = array(
+            'setting' => $setting,
+            'agencies' => $agencies,
+            'agency_users' => array(),
+            'holidays' => json_encode($holidays),
+            'locations' => array()
+        );
         return view('admin.schedule.index')->with($data);
     }
 
@@ -65,6 +74,24 @@ class ScheduleController extends Controller
 
             $schedule = new Schedule();
             $schedule->saveSchedules($schedules, $request->users, $request->start_date, $request->end_date, $request->working_days);
+
+            //delete & insert
+            foreach($request->users as $userId){
+                if($userId){
+                    $userLocationObj = new UserLocation();
+                    $userLocationObj->deleteUserLocations($userId);
+                    if(count($request->locations)){
+                        foreach($request->locations as $userLocationId){
+                            $data = array(
+                                'user_id' => $userId,
+                                'location_id'=> $userLocationId
+                            );
+                            $userLocationObj->addUserLocation($data);
+                        }
+                    }
+                }
+            }
+
             $success = true;
 
         }catch(\Exception $ex){
@@ -157,5 +184,64 @@ class ScheduleController extends Controller
             Log::error('Error :'. $ex);
         }
         return response()->json(['response' => $appointments]);
+    }
+
+    /**
+     * gets the list of agency locations by id from DB for Agency Locations list.
+     *
+     * @param Request $request.
+     *
+     * @return json response -  $agency_users.
+     */
+    public function getAgencyLocationsById(Request $request)
+    {
+        try {
+            $agencyLocationObj = new AgencyLocation();
+            $agencyLocationIds = $agencyLocationObj->getAgencyLocations($request->agency_id);
+            $agencyLocations = array();
+            if($agencyLocationIds){
+                foreach($agencyLocationIds as $row){
+                    $locationObj = new Location();
+                    $locationDetails = $locationObj->getLocationDetails($row->location_id);
+                    $agencyLocations[] = $locationDetails;
+                }
+            }
+            return response()->json(['response' => $agencyLocations]);
+        }catch(\Exception $ex){
+            Log::error('Error :'. $ex);
+        }
+    }
+
+    /**
+     * gets the list of user locations by id from DB.
+     *
+     * @param Request $request.
+     *
+     * @return json response -  $agency_users.
+     */
+    public function getUserLocationsById(Request $request)
+    {
+        try {
+            $userIds = $request->user_id;
+            $userLocations = array();
+            if($userIds && count($userIds)){
+                foreach($userIds as $userId){
+                    if($userId) {
+                        $userLocationObj = new UserLocation();
+                        $userLocationIdsResult = $userLocationObj->getUserLocations($userId);
+                        if ($userLocationIdsResult) {
+                            foreach ($userLocationIdsResult as $userLocationId) {
+                                if(!in_array($userLocationId->location_id, $userLocations)) {
+                                    $userLocations[] = $userLocationId->location_id;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return response()->json(['response' => $userLocations]);
+        }catch(\Exception $ex){
+            Log::error('Error :'. $ex);
+        }
     }
 }

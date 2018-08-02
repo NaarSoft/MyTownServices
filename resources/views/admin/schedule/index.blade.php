@@ -107,17 +107,11 @@
                                                 </div>
                                                 <div class="row item form-group">
                                                     <div class="required">
-                                                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="SlotInterval">Slot Interval</label>
+                                                        <label class="control-label col-md-2 col-sm-2 col-xs-12" for="SlotInterval">Locations</label>
                                                     </div>
                                                     <div class="col-md-4 col-sm-4 col-xs-12">
-                                                        <select id="SlotInterval" name="SlotInterval" class="form-control">
-                                                            <option>15</option>
-                                                            <option selected="selected">30</option>
-                                                            <option>45</option>
-                                                            <option>60</option>
-                                                            <option>90</option>
-                                                            <option>120</option>
-                                                        </select>
+                                                        {!! Form::select('agency_user_location[]', $locations, null, ['id' => 'agency_user_location', 'multiple'=> 'multiple', 'class' => 'select2_multiple form-control', 'required', 'data-parsley-required-message' =>'Select Location', 'data-parsley-errors-container' => '#agency_user_location_error']) !!}
+                                                        <span id="{{'agency_user_error'}}" class=""></span>
                                                     </div>
                                                     <div class="required">
                                                         <label class="control-label col-md-2 col-sm-2 col-xs-12" for="SlotInterval">Lunch Hours</label>

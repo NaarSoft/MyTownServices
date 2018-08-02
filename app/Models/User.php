@@ -247,6 +247,25 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     }
 
     /**
+     * get the list of all agency users by id for a location.
+     * @param $agencyId
+     * @param $locationId
+     * @return mixed array of agency users.
+     */
+    public function getAgencyUsersForLocation($agencyId, $locationId)
+    {
+        return DB::table($this->table . ' as u')
+            ->join('user_locations as ul', 'ul.user_id','=','u.id')
+            ->select(DB::RAW('u.id, CONCAT_WS(" ", u.first_name, u.last_name) as name, u.schedule_color'))
+            ->where('u.agency_id', '=', $agencyId)
+            ->where('ul.location_id', '=', $locationId)
+            ->where('u.active', '=', 1)
+            ->where('u.deleted', '=', 0)
+            ->orderBy('name', 'ASC')
+            ->get();
+    }
+
+    /**
      * delete user by id.
      *
      * @param string $id .

@@ -46,6 +46,8 @@ Route::group(['middleware' => ['web']], function(){
         Route::post('/schedule/getSchedules', ['middleware' =>  ['permission:admin-permission'],'as'=> 'schedule.getSchedules', 'uses' => 'ScheduleController@getSchedules']);
         Route::post('/schedule/getAgencyUserById', ['middleware' =>  ['permission:admin-permission'],'uses' => 'ScheduleController@getAgencyUserById']);
         Route::post('/schedule/deleteSlot', ['middleware' =>  ['permission:admin-permission'],'uses' => 'ScheduleController@deleteSlot']);
+        Route::post('/schedule/getAgencyLocationsById', ['middleware' =>  ['permission:admin-permission'],'uses' => 'ScheduleController@getAgencyLocationsById']);
+        Route::post('/schedule/getUserLocationsById', ['middleware' =>  ['permission:admin-permission'],'uses' => 'ScheduleController@getUserLocationsById']);
 
         // Setting routes
         Route::get('/setting/index', ['middleware' =>  ['permission:admin-permission'],'uses' => 'SettingController@index']);
@@ -93,7 +95,7 @@ Route::get('/home1', 'PublicController@home1');
 Route::get('/index', 'PublicController@index');
 Route::get('/index1', 'PublicController@index1');
 Route::get('/aboutus', 'PublicController@about_us');
-Route::get('/services', 'PublicController@services');
+Route::get('/service', 'PublicController@service');
 Route::get('/location', 'PublicController@location');
 Route::get('/trauma', 'PublicController@trauma');
 Route::get('/traumaindex', 'PublicController@traumaindex');
@@ -109,8 +111,11 @@ Route::get('/service/appointment', ['uses' => 'ServiceController@appointment']);
 Route::get('/service/print_appointment', ['uses' => 'ServiceController@printAppointment']);
 Route::post('/service/goToPrevious', 'ServiceController@goToPrevious');
 Route::post('/service/getAvailableSlotsForBooking', ['uses' => 'ServiceController@getAvailableSlotsForBooking']);
-Route::post('/service/bookAppointment', ['uses' => 'ServiceController@bookAppointment']);
+Route::post('/service/bookAppointment', ['as'=>'service.book', 'uses' => 'ServiceController@bookAppointment']);
 Route::post('/service/cancelAppointment', ['as'=> 'service.cancel','uses' => 'ServiceController@cancelAppointment']);
+Route::post('/service/getLocationsWiseAvailableSlots', ['uses' => 'ServiceController@getLocationsWiseAvailableSlots']);
+Route::post('/service/getServiceAgencies', ['uses' => 'ServiceController@getServiceAgencies']);
+Route::get('/service/appointmentNotAvailable', ['uses' => 'ServiceController@appointmentNotAvailable']);
 Route::post('traumaindex', array('uses'=>'TraumaController@create'));
 Route::get('/session_expire', 'PublicController@session_expire');
 //Route::post('', 'PublicController@create');
@@ -118,6 +123,7 @@ Route::get('/session_expire', 'PublicController@session_expire');
 //Route::post('/create','PublicController@insert'); 
 //Route::post('/create', ['middleware' =>  ['permission:admin-permission'], 'uses' => 'PublicController@insert']);
 Route::get('/create','PublicController@create');
+Route::get('/qcreateview','PublicController@qcreateview');
 Route::get('/score','PublicController@score');
 Route::get('/haward','PublicController@haward');
 Route::get('/greenville','PublicController@greenville');

@@ -96,25 +96,16 @@ class Agency extends Model
      *
      * @return array of Agency by service Ids.
      */
-    public function getAgencyByServiceIds($service_ids)
+    public function getAgenciesByQuestionIds($questionIds)
     {
-        $gap_hours = Config::get('app.future_events_after_hours');
-        $future_date = Helper::getESTDateTimeFromUTC(Carbon::now()->addHours($gap_hours));
-
-        $data = DB::table($this->table . ' as a')
-                    ->leftJoin('users as u', 'a.id', '=', 'u.agency_id')
-                    ->leftJoin("schedules as sc", function($join)use($future_date){
-                        $join->on("u.id", "=", "sc.user_id")
-                            ->on("sc.booked_by", "=", DB::raw("'0'"))
-                            ->on(DB::raw("CONCAT(sc.date, ' ', sc.start_time)"), ">=", DB::raw("'$future_date'"));
-                    })
-                    ->select(DB::raw('DISTINCT a.*, COUNT(sc.id) AS available_slots'))
-                    ->orderBy('a.service_id', 'asc')
-                    ->groupBy('a.id')
-                    ->whereIn('a.service_id', $service_ids)
-                    ->get()->all();
-
-        return $data;
+        return DB::table($this->table . ' as a')
+            ->join('service_questions as sq', 'a.service_id', '=', 'sq.service_id')
+            ->select('a.id', 'a.name', 'a.address', 'a.contact_info', 'a.website', 'a.htmlcontent', 'a.image_path')
+            ->whereIn('sq.question_id', $questionIds)
+            ->groupBy('a.service_id')
+            ->orderBy('a.service_id')
+            ->get()
+            ->all();
     }
 
     /**

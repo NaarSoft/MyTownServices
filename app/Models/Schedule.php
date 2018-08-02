@@ -188,7 +188,7 @@ class Schedule extends Model
      *
      * @throws \Exception
      */
-    public function bookAppointment($scheduleIds, $responseId, $requestId)
+    public function bookAppointment($scheduleIds, $responseId, $locationId, $requestId)
     {
         DB::beginTransaction();
         try {
@@ -200,7 +200,7 @@ class Schedule extends Model
             foreach($scheduleIds as $scheduleId){
                 DB::table($this->table)
                     ->where('id', $scheduleId)
-                    ->update(['booked_by' => $responseId]);
+                    ->update(['booked_by' => $responseId, 'location_id' => $locationId]);
             }
 
             DB::commit();
@@ -225,8 +225,9 @@ class Schedule extends Model
             ->join('users as u', 'u.id', '=', 's.user_id')
             ->join('agency as a', 'a.id', '=', 'u.agency_id')
             ->join('responses as r', 'r.id', '=', 's.booked_by')
-            ->select(DB::raw('a.id AS agency_id, a.name as agency_name, a.service_id, DATE_FORMAT(s.start_time, "%h:%i %p") AS start_time, DATE_FORMAT(s.date, "%b, %d, %Y") AS date,
-                            DATE_FORMAT(s.end_time, "%h:%i %p") AS end_time, u.email as user_email, r.name AS respondent, r.email_address as respondent_email_address, s.id as schedule_id'))
+            ->join('locations as l', 'l.id', '=', 's.location_id')
+            ->select(DB::raw('a.id AS agency_id, a.name as agency_name, a.contact_info, a.image_path, a.service_id, DATE_FORMAT(s.start_time, "%h:%i %p") AS start_time, DATE_FORMAT(s.date, "%b, %d, %Y") AS date,
+                            DATE_FORMAT(s.end_time, "%h:%i %p") AS end_time, u.email as user_email, r.name AS respondent, r.email_address as respondent_email_address, s.id as schedule_id, l.location'))
             ->where('s.booked_by', $responseId)
             ->orderBy('s.start_time')
             ->get();
@@ -365,5 +366,92 @@ class Schedule extends Model
         } catch (\Exception $ex) {
             throw $ex;
         }
+    }
+
+    public function getUserAvailableTimeSlots($userId, $dateTime)
+    {
+        $date = date('Y-m-d', strtotime($dateTime));
+        try{
+             return DB::table($this->table)
+                ->select('start_time')
+                ->where('user_id', '=', $userId)
+                ->where("booked_by", "=", DB::raw("'0'"))
+                ->where('date', '=', $date)
+                ->where(DB::raw("CONCAT(date, ' ', start_time)"), ">=", DB::raw("'$dateTime'"))
+                ->get()->all();
+        } catch (\Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function getBookedTimeSlots($userId, $dateTime, $notAtLocationId)
+    {
+        $date = date('Y-m-d', strtotime($dateTime));
+        try {
+            return DB::table($this->table)
+                ->select('start_time')
+                ->where('user_id', '=', $userId)
+                ->where("booked_by", '!=', DB::raw("'0'"))
+                ->where('location_id', '!=', $notAtLocationId)
+                ->where('date', '=', $date)
+                ->where(DB::raw("CONCAT(date, ' ', start_time)"), ">=", DB::raw("'$dateTime'"))
+                ->get()->all();
+        } catch (\Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function getAvailableScheduleId($agencyId, $date, $time)
+    {
+        try {
+            return DB::table($this->table . ' as s')
+                ->join('users as u', 's.user_id', '=',  'u.id')
+                ->select('s.id')
+                ->where('u.agency_id', $agencyId)
+                ->where('u.active', 1)
+                ->where('s.date', '=' , $date)
+                ->where('s.start_time', '=', $time)
+                ->where('s.booked_by', '=', 0)
+                ->orderBy('s.id')
+                ->get()->first();
+        } catch(\Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function getFutureAppointmentsCount($locationId)
+    {
+        try{
+            return DB::table($this->table)
+                ->select('id')
+                ->where('location_id', '=', $locationId)
+                ->where('booked_by', '!=', 0)
+                ->where(DB::raw("CONCAT(date, ' ', start_time)"), ">=", DB::raw('now()'))
+                ->count();
+        } catch(\Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function getAppointmentTimeSlotsCount($agencyId)
+    {
+        try{
+            $gap_hours = Config::get('app.future_events_after_hours');
+            $nextDateTime = Carbon::now()->addHours($gap_hours)->format('Y-m-d H:i:s');
+            return DB::table($this->table . ' as s')
+                ->join('users as u', 'u.id', '=', 's.user_id')
+                ->select('id')
+                ->where('u.agency_id', '=', $agencyId)
+                ->where('s.booked_by', '=', 0)
+                ->where(DB::raw("CONCAT(s.date, ' ', s.start_time)"), ">=", $nextDateTime)
+                ->count();
+        } catch(\Exception $ex) {
+            throw $ex;
+        }
+    }
+
+    public function getFirstOpenTimeSlot($locationId, $agencyIds)
+    {
+
     }
 }

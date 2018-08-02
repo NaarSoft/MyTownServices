@@ -95,7 +95,7 @@ $style = [
                                     <p style="{{ $style['paragraph'] }}">
                                         You are scheduled to meet with the following agencies on
                                         <b> {{ $booking_date }} </b>
-                                        at {{ (string)\Config::get('app.name') }} {{ (string)\Config::get('app.mts_address') }}
+                                        at {{ (string)\Config::get('app.name') }}, {{ $location }}
                                     </p>
 
                                     <ul style="{{ $style['unordered-list'] }}">

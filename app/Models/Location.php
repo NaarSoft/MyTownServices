@@ -38,6 +38,7 @@ class Location extends Model
     {
         $data = DB::table($this->table)
             ->select(DB::Raw('id, location') )
+            ->where('is_deleted', '=', 0)
             ->orderBy('id')
             ->get();
         return $data;
@@ -52,6 +53,7 @@ class Location extends Model
     {
         $data = DB::table($this->table)
             ->select('id')
+            ->where('is_deleted', '=', 0)
             ->count();
         return $data;
     }
@@ -102,6 +104,35 @@ class Location extends Model
                 ->where('id', $locationId)
                 ->update($data);
             DB::commit();
+            $success = true;
+        } catch (\Exception $ex) {
+            Log::error('Error :'. $ex);
+            DB::rollback();
+        }
+        return $success;
+    }
+
+    public function deleteLocation($locationId)
+    {
+        $success = false;
+        DB::beginTransaction();
+        try {
+            $data['is_deleted'] = 1;
+            DB::table($this->table)
+                ->where('id', '=', $locationId)
+                ->update($data);
+            DB::commit();
+
+            //delete from Location Users
+            DB::table('agency_locations')
+                ->where('location_id', '=', $locationId)
+                ->update($data);
+
+            //delete from agency Users
+            DB::table('user_locations')
+                ->where('location_id', '=', $locationId)
+                ->update($data);
+
             $success = true;
         } catch (\Exception $ex) {
             Log::error('Error :'. $ex);

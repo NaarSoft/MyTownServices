@@ -404,10 +404,15 @@ function deleteLocationConfirmed(locationId) {
             blockFullUI();
         },
         success: function (data) {
-            if(data.success == true)
+            if(data.success == true) {
                 populateLocationGrid();
-            else
-                bootbox.alert('Some error occurred.');
+            }  else {
+                if(data.error.length > 0){
+                    bootbox.alert(data.error);
+                } else {
+                    bootbox.alert('Some error occurred.');
+                }
+            }
         },
         complete: function() {
             $.unblockUI();

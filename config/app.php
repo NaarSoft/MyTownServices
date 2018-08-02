@@ -139,6 +139,7 @@ return [
     'senior_service_id'     	    =>  '5',
     'future_events_after_hours'     =>  24,
     // In Seconds
+    'slot_duration'                 =>  15,
     'wizard_session_timeout'        =>  180,
     'admin_session_timeout'         =>  600,
     'session_expires_alert_time'    =>  30,

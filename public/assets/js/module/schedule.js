@@ -161,6 +161,7 @@ function bindEvents() {
         var agencyId = $(this).val();
         if(agencyId > 0){
             getAgencyUsers(agencyId);
+            getAgencyLocations(agencyId);
             exitingEventsArray = [];
             $('#calendar').fullCalendar( 'removeEvents');
             addHolidays();
@@ -283,6 +284,7 @@ $(window).load(function() {
 
         $('#agency_user').on('select2:select', function (evt) {
             var user_id = evt.params.data.id;
+            getUserLocations(user_id);
             getSchedules(user_id);
             $("#agency_user_error ul.parsley-errors-list").html('');
             $("#agency_user").removeClass('parsley-error');
@@ -290,6 +292,7 @@ $(window).load(function() {
 
         $('#agency_user').on('select2:unselect', function (evt) {
             var user_id = evt.params.data.id;
+            getUserLocations(user_id);
             exitingEventsArray = $.grep(exitingEventsArray, function(e) { return e.user != user_id });
             $('#calendar').fullCalendar( 'removeEvents');
             $('#calendar').fullCalendar('addEventSource', exitingEventsArray);
@@ -301,6 +304,10 @@ $(window).load(function() {
         var user_id = $('#agency_user').val();
         getSchedules(user_id);
     }
+
+    $("#agency_user_location").select2({
+        placeholder: 'Select Location',
+    });
 });
 
 function addButtonInCalendar(){
@@ -334,6 +341,60 @@ function getAgencyUsers(agencyId){
             $.each(options, function(i, option) {
                 ddlOption.append($("<option></option>").attr("value", option.id).attr("color", option.schedule_color).text(option.name));
             });
+        },
+        error:function(xhr, status, error){
+            alert("Something went wrong! Please try again.");
+        },
+        complete: function() {
+            $.unblockUI();
+        }
+    });
+}
+
+function getAgencyLocations(agencyId){
+    var ddlOption = $("#agency_user_location");
+    ddlOption.empty();
+    ddlOption.val('').trigger('change');
+
+    $.ajax({
+        type: "POST",
+        url: "getAgencyLocationsById",
+        data:{'agency_id': agencyId},
+        dataType: 'JSON',
+        cache: false,
+        beforeSend: function() {
+            blockFullUI();
+        },
+        success: function (data) {
+            var options = data.response;
+            $.each(options, function(i, option) {
+                ddlOption.append($("<option></option>").attr("value", option.id).text(option.location));
+            });
+        },
+        error:function(xhr, status, error){
+            alert("Something went wrong! Please try again.");
+        },
+        complete: function() {
+            $.unblockUI();
+        }
+    });
+}
+
+function getUserLocations(userId) {
+    var selectedUserIds = $('#agency_user').val();
+    $.ajax({
+        type: "POST",
+        url: "getUserLocationsById",
+        data:{'user_id': selectedUserIds},
+        dataType: 'JSON',
+        cache: false,
+        beforeSend: function() {
+            blockFullUI();
+        },
+        success: function (data) {
+            var options = data.response;
+            $('#agency_user_location').val(options);
+            $('#agency_user_location').trigger('change');
         },
         error:function(xhr, status, error){
             alert("Something went wrong! Please try again.");
@@ -384,7 +445,7 @@ function generateSchedule() {
         var endTimeHour = endDateTime_24.hour();
         var endTimeMin = endDateTime_24.minute();
 
-        var interval = $('#SlotInterval').val();
+        var interval = 15;
 
         var working_days = $('input[name=office_days]:checked').map(function()
         {
@@ -698,7 +759,13 @@ function saveScheduleData(){
             "processing": true,
             "url": "saveScheduleData",
             "type": "POST",
-            "data":{'scheduleArray': eventsArray, 'users': $('#agency_user').val(), 'start_date': start, 'end_date': end, 'working_days' : working_days},
+            "data":{
+                'scheduleArray': eventsArray,
+                'users': $('#agency_user').val(),
+                'start_date': start, 'end_date': end,
+                'working_days' : working_days,
+                'locations': $('#agency_user_location').val()
+            },
             success: function(data){
                 if(data.success == true){
                     $("#div_response_schedule").css('display', '');

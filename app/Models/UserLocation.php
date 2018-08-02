@@ -1,8 +1,8 @@
 <?php
 /**
  * Created by PhpStorm.
- * Date: 04-07-2018
- * Time: 21:25
+ * Date: 06-07-2018
+ * Time: 02:22
  */
 
 namespace App\Models;
@@ -12,14 +12,14 @@ use Illuminate\Support\Facades\Log;
 use DB;
 
 
-class AgencyLocation extends Model
+class UserLocation extends Model
 {
     /**
      * The table associated with the model.
      *
      * @var string
      */
-    protected $table = 'agency_locations';
+    protected $table = 'user_locations';
 
     /**
      * Primary key of table.
@@ -28,21 +28,21 @@ class AgencyLocation extends Model
      */
     protected $primaryKey = "id";
 
-    public function getAgencyLocations($agencyId)
+    public function getUserLocations($userId)
     {
         $data = DB::table($this->table)
             ->select(DB::Raw('location_id'))
-            ->where('agency_id', '=', $agencyId)
+            ->where('user_id', '=', $userId)
             ->where('is_deleted', '=', 0)
             ->get();
         return $data;
     }
 
-    public function deleteAgencyLocations($agencyId){
+    public function deleteUserLocations($userId){
         DB::beginTransaction();
         try {
             DB::table($this->table)
-                ->where('agency_id', '=', $agencyId)
+                ->where('user_id', '=', $userId)
                 ->where('is_deleted', '=', 0)
                 ->delete();
             DB::commit();
@@ -52,13 +52,13 @@ class AgencyLocation extends Model
         }
     }
 
-    public function addAgencyLocation($data)
+    public function addUserLocation($data)
     {
         DB::beginTransaction();
         $success = false;
         try {
-            $agencyLocationId = DB::table($this->table)->insertGetId($data);
-            if($agencyLocationId){
+            $userLocationId = DB::table($this->table)->insertGetId($data);
+            if($userLocationId){
                 $success = true;
             }
             DB::commit();

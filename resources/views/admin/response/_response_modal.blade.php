@@ -3,21 +3,19 @@
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                    <h4 class="modal-title" id="myModalLabel">Respondent</h4>
+                    <div class="col-sm-8 col-xs-12">
+                        <h4 class="modal-title" id="myModalLabel">Respondent Information</h4>
+                    </div>
+                    <div class="col-sm-4 col-xs-12">
+                        <button type="button" class="close" data-dismiss="modal" style="border: 1px solid #999; border-radius: 50%; padding: 2px;">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
                 </div>
-
                 <div class="modal-body">
                     <div id="div_questionnaire">
                         @include('questionnaire._questionnaire_view')
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">
-                        Close
-                    </button>
                 </div>
             </div>
         </div>

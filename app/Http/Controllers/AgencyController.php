@@ -69,7 +69,12 @@ class AgencyController extends Controller
             }
         }
         $services = Service::pluck('name', 'id')->all();
-        $locations = Location::pluck('location', 'id')->all();
+        $locationObj = new Location();
+        $locationsArray = $locationObj->getLocations();
+        $locations = array();
+        foreach($locationsArray as $locationDetails){
+            $locations[$locationDetails->id] = $locationDetails->location;
+        }
         $data = array('agency' => $agency, 'agency_locations' => $agencyLocations, 'services' => $services, 'locations' => $locations);
         return view('admin.agency.edit')->with($data);
     }

@@ -188,14 +188,22 @@ class SettingController extends Controller
     public function deleteLocation($id)
     {
         $success = false;
+        $errorMsg = '';
         try{
-            $location = Location::find($id);
-            $location->delete();
-            $success = true;
+            //check whether the location has future dated appointments
+            $scheduleObj = new Schedule();
+            $futureAppointmentsCount = $scheduleObj->getFutureAppointmentsCount($id);
+            if($futureAppointmentsCount > 0){
+                $errorMsg = "This Location can not be deleted, as it has Scheduled Future Appointments.";
+            } else {
+                $location = Location::find($id);
+                $location->deleteLocation($id);
+                $success = true;
+            }
         }catch(\Exception $ex){
             Log::error('Error :'. $ex);
         }
-        return response()->json(['success'=> $success]);
+        return response()->json(['success'=> $success, 'error' => $errorMsg]);
     }
 
     /**

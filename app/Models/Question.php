@@ -53,4 +53,15 @@ class Question extends Model
         //dd($data);
         return $data;
     }
+
+    public function getQuestions()
+    {
+        return DB::table($this->table . ' as q')
+            ->leftJoin('service_questions as sq', 'q.id', '=', 'sq.question_id')
+            ->select('q.id', 'q.text', DB::raw('GROUP_CONCAT(sq.service_id) as service_ids'))
+            ->where('q.visible', 1)
+            ->groupBy('q.id')
+            ->orderBy('q.sort_order')
+            ->get();
+    }
 }

@@ -31,6 +31,7 @@ class ScheduleFormRequest extends FormRequest
             //'office_days' => 'required',
             'agency' => 'required',
             'agency_user' => 'required',
+            'agency_user_location' => 'required'
         ];
     }
 
@@ -48,6 +49,7 @@ class ScheduleFormRequest extends FormRequest
             'EndDate.date_format' => 'Enter End Date in the following format m/d/Y (e.g., 01/20/2017 for 20th Dec 2017.',
             'agency.required'  => 'Select Agency.',
             'agency_user.required'  => 'Select Agency User.',
+            'agency_user_location.required' => 'Select Location.'
         ];
     }
 }

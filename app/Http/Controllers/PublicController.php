@@ -90,21 +90,21 @@ echo 'Not bad, you scored average';
 	 
 	 
 	public function add(Request $request){
-		$this->validate($request, [
-		'q1' => 'required',
-		'q2' => 'required',
-		'q3' => 'required',
-		'q4' => 'required',
-		'q5' => 'required',
-		'q6' => 'required',
-		'q7' => 'required',
-		'q8' => 'required',
-		'q9' => 'required',
-		'q10' => 'required'
+		//$this->validate($request, [
+		//'q1' => 'required',
+		//'q2' => 'required',
+		//'q3' => 'required',
+		//'q4' => 'required',
+		//'q5' => 'required',
+		//'q6' => 'required',
+		//'q7' => 'required',
+		//'q8' => 'required',
+		//'q9' => 'required',
+		//'q10' => 'required'
 		
-	      ]);
-		$question = new question;
-		$question->q1 = $request->input('q1');
+	     // ]);
+		//$question = new question;
+		//$question->q1 = $request->input('q1');
 		$question->q2 = $request->input('q2');
 		$question->q3 = $request->input('q3');
 		$question->q4 = $request->input('q4');
@@ -146,6 +146,15 @@ echo 'Not bad, you scored average';
     {
         return view('services');
     }
+	   /**
+     * Return service view.
+     *
+     * @return view.
+     */
+    public function service()
+    {
+        return view('service');
+    }
 	
 	 /**
      * Return services view.
@@ -174,6 +183,10 @@ echo 'Not bad, you scored average';
     public function trauma()
     {
         return view('trauma');
+    }
+	 public function qcreateview()
+    {
+        return view('qcreateview');
     }
 	/**
      * Return trauma view.
@@ -256,10 +269,40 @@ echo 'Not bad, you scored average';
         if($loadData != 1) {
             session()->forget('responseId');
         }
-
-        $data = $this->getQuestionnaireData($request);
         session()->forget('loadData');
 
+        $questionObj = new Question();
+        $questions = $questionObj->getQuestions();
+        $basicInfoQuestions = array();
+        $serviceQuestions = array();
+        if(!empty($questions)) {
+            foreach($questions as $row){
+                if(is_null($row->service_ids)){
+                    $basicInfoQuestions[] = $row;
+                } else {
+                    $serviceQuestions[] = $row;
+                }
+            }
+        }
+        $noOfQuestionsPerCol = ceil(count($serviceQuestions)/2);
+        $serviceQuestionsColOne = array();
+        $serviceQuestionsColTwo = array();
+        if(!empty($serviceQuestions)){
+            $count = 1;
+            foreach($serviceQuestions as $row){
+                if($count <= $noOfQuestionsPerCol){
+                    $serviceQuestionsColOne[] = $row;
+                } else {
+                    $serviceQuestionsColTwo[] = $row;
+                }
+                $count++;
+            }
+        }
+        $data = array(
+            'basic_info_questions' => $basicInfoQuestions,
+            'service_questions_one' => $serviceQuestionsColOne,
+            'service_questions_two' => $serviceQuestionsColTwo
+        );
         return view('index')->with($data);
     }
  /**

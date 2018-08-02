@@ -90,7 +90,7 @@ $style = [
                                     <p style="{{ $style['paragraph'] }}">
                                         You are scheduled to meet with {{ $new_schedule->respondent }} on
                                         <b> {{ $new_schedule->date . ' ' . $new_schedule->start_time }} </b>
-                                        at {{ (string)\Config::get('app.name') }} {{ (string)\Config::get('app.mts_address') }}
+                                        at {{ (string)\Config::get('app.name') }}, {{ $location }}
                                     </p>
 
                                     <!-- Salutation -->
