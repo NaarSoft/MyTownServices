@@ -7,35 +7,43 @@
 	
 	
         {!! Form::open( array('id' => 'form', 'method' => 'post', 'class' => 'small', 'action' => 'PublicController@saveBasicInfo')) !!}
-            <div id="div_appointment">
-
-                
-                  
-                        <div class="row">
-						
-						<div class="col-md-6">
-						<h1 style="color:#fff;">Do you know</h1><br/><h3 style="color:#fff;text-align:center;">Your ACEs ?</h3><br/>
-						<p style="text-align:center"> <a href="#" class="btn btn-warning" role="button">Know More</a> </p>
+            <!--<div id="div_appointment">
+<div class="row">
+					<div class="col-md-6 text-right" style="">
+						<h2 style="color:#fff; font-weight: 300;
+    letter-spacing:1px;">Do you know</h2><br/><h4 style="color:#fff;font-weight: 300;
+    letter-spacing: 1px;">Your ACEs ?</h4><br/>
+						<p style=""> <a href="#" class="btn btn-warning" role="button">Know More</a> </p>
 						</div>
-						
-						
-						<div class="col-md-6">
-						<h1 style="color:#fff;">What Services</h1><br/><h3 style="color:#fff;text-align:center;">Can I Receive ?</h3><br/>
-						<p style="text-align:center"> <a href="#" class="btn btn-warning" role="button">Know More</a> </p>
-						
-						</div>
-						
-                            
-                            
-                        </div>
-                       
-                      
-
-                        
-                   
-                
-		</div>
+			<div class="col-md-6 vl">
+						<h2 style="color:#fff;font-weight: 300;letter-spacing:1px;">What Services </h2><br/><h4 style="color:#fff;font-weight: 300; letter-spacing: 1px;">Can I Receive ? </h4><br/>
+						<p style=""> <a href="#" class="btn btn-warning" role="button">Know More</a> </p>
+</div>
+						 </div>
+</div>-->
 		
+		
+		
+		<div class="row">
+		<div id="div_appointment2">
+		
+		
+		<p style="color:#fff;font-weight:lighter;letter-spacing:1px;font-size:48px;">Do You know</p><br/>
+	    <p style="color:#fff;font-weight:lighter;letter-spacing: 1px; font-size:32px;margin:-35px -2px 11px 106px;">Your <b style="font-weight:bold;font-size: 32px;color: #fff;">ACEs ?</b></p><br/>
+	     <p style=""> <a href="{{ URL::to('trauma') }}" class="btn btn-warning1" role="button" style="margin: -10px 0px 0px 146px;">Know More</a> </p>
+		
+		
+		
+		</div>
+		<div id="div_appointment1" class="vl">
+			
+			
+			<p style="color:#fff;font-weight:lighter;letter-spacing:1px;font-size:48px;">What Services </p><br/>
+			<p style="color:#fff;font-weight:lighter; letter-spacing: 1px;font-size:32px;margin: -38px -10px 6px 7px;">Can I Receive ? </p><br/>
+		   <p style=""> <a href="{{ URL::to('service') }}" class="btn btn-warning1" role="button">Know More</a> </p>
+			
+</div>
+</div>
 	{!! Form::close() !!}
     </div>
 
