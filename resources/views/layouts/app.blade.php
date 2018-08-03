@@ -120,51 +120,45 @@
 <div class="footer-top-area">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6">
-                <div class="single-footer-item-padding-left">
+            <div class="col-sm-5">
+              
 				<div class="row">
-				<div class="col-sm-4">
+				<div class="col-md-3">
 				
                     <div class="footer-logo">
-                        <a href="{{URL::to('home')}}"><img src="{{ asset('public/assets/images/my-town-footer-logo.png')}}" alt="" height="200" width="200"></a>
+                        <a href="{{URL::to('home')}}"><img src="{{ asset('public/assets/images/mytown-footer-logo.png')}}" alt="" height="80" width="80"> </a>
                     </div>
 					</div>
 					
-					<div class="col-sm-8">
-					    <h2>MyTown</h2>
-					<p>Montcalm County looking for services or assistance with everything from basic needs to mental health and is </p>
+					<div class="col-md-6">
+					    <h4>MyTown</h4>
+					<p style="text-align:justify;">Montcalm County looking for services or assistance with everything from basic needs to mental health and is Montcalm County looking for services or assistance with everything from basic needs to mental health and is</p>
 					
 					</div>
-					
-					
-					
-					
-					
-					
-					</div>
-                </div>
+				</div>
+               
             </div>
             <div class="col-sm-2">
                 <div class="single-footer-item-padding-left">
-                    <h2>Links</h2>
-                    <a href="{{ URL::to('home') }}">Home</a><br>
-					 <a href="{{ URL::to('aboutus') }}">About</a><br>
-					 <a href="{{ URL::to('location') }}">Locations</a><br>
-					 <a href="{{ URL::to('trauma') }}">Trauma</a><br>
-                    <a href="{{ URL::to('services') }}" >Services</a><br>
+                    <h4>Links</h4>
+                    <a href="{{ URL::to('home') }}">HOME</a><br>
+					 <a href="{{ URL::to('aboutus') }}">ABOUT MY TOWN</a><br>
+					 <a href="{{ URL::to('location') }}">LOCATIONS</a><br>
+					 <a href="{{ URL::to('trauma') }}">TRAUMA</a><br>
+                    <a href="{{ URL::to('services') }}" >SERVICES</a><br>
                    <!-- <a href="{{ URL::to('index') }}">Schedule an appointment</a><br>-->
                    
-                    <a href="{{ URL::to('contactus') }}">Contact</a>
+                    <a href="{{ URL::to('contactus') }}">CONTACT</a>
                 </div>
             </div>
-            <div class="col-sm-4">
+            <div class="col-sm-5">
                 <div class="single-footer-item-padding-left">
-                    <h2>Locations</h2>
-  <i class="fa fa-map-marker" style="font-size:16px"></i>&nbsp;&nbsp;Carson City &nbsp;<i class="fa fa-map-marker" style="font-size:16px"></i>&nbsp;&nbsp;Greenville &nbsp;<i class="fa fa-map-marker" style="font-size:16px"></i>&nbsp;&nbsp;Howard City&nbsp;<i class="fa fa-map-marker" style="font-size:16px"></i>&nbsp;Stanton 
-                </div>
+                    <h4>Locations</h4>
+  <i class="fa fa-map-marker" style="font-size:15px"></i>&nbsp;Carson City &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker" style="font-size:15px"></i>&nbsp;Greenville &nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker" style="font-size:15px"></i>&nbsp;Howard City&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-map-marker" style="font-size:15px"></i>&nbsp;Stanton 
+                </div><br/>
 				                <div class="single-footer-item-padding-left">
-                    <h2>Contact Us</h2>
-                   <span class="spn-bold">Email: <a href="mailto:{{ (string)\Config::get('app.mts_email') }}">{{ (string)\Config::get('app.mts_email') }}</a></span>
+                    <h4>Contact Us</h4>
+                    <i class="fa fa-envelope" style="font-size:15px"></i>&nbsp;&nbsp;<a href="mailto:{{ (string)\Config::get('app.mts_email') }}">{{ (string)\Config::get('app.mts_email') }}</a>
                 </div>
 
             </div>
@@ -177,19 +171,14 @@
 		
 		<div class="col-md-4">
 		
-		<div align=center><b style="color:#fff;">No of Visitors:</b>&nbsp;<a href='https://www.counter12.com'><img src='https://www.counter12.com/img-AcDxdz1DZyzABdY9-77.gif' border='0' alt='free web counter'></a><script type='text/javascript' src='https://www.counter12.com/ad.js?id=AcDxdz1DZyzABdY9'></script></div>
+		<div align=center><p style="color:#fff;font-weight:normal;">No of Visitors : <span style="color:#9a9a9a;font-size:14px;">&nbsp;&nbsp;9999</span></p>&nbsp;<!--<a href='https://www.counter12.com'><img src='https://www.counter12.com/img-AcDxdz1DZyzABdY9-77.gif' border='0' alt='free web counter'></a><script type='text/javascript' src='https://www.counter12.com/ad.js?id=AcDxdz1DZyzABdY9'></script>--></div>
 		
 		
 		
 		</div>
-		
-		
-		
-		
-		
-            <div class="col-sm-8">
+		<div class="col-sm-8">
                 <div class="footer-bottom-left text-center">
-                    <p>Web development by <a href="http://www.empoweredmargins.com" target="_blank">Empowered Margins</a>&nbsp;<span>&copy;</span> 2017 {{ config('app.name', 'Laravel') }}</p>
+                    <p>Web development by <a href="http://www.empoweredmargins.com" target="_blank">Empowered Margins</a>&nbsp;<span>&copy;</span> 2018 {{ config('app.name', 'Laravel') }}</p>
                 </div>
             </div>
             <div class="col-sm-6">
@@ -199,7 +188,7 @@
             </div>
         </div>
     </div>
-</div>
+</div
 <script type="text/javascript" src="{{ asset('public/assets/js/common.js') }}"></script>
 </body>
 </html>

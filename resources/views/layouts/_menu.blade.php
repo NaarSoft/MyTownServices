@@ -15,7 +15,7 @@
                                     <li><a href="{{ URL::to('contactus') }}">CONTACT</a></li>
 									 <!--<li><a href="{{ URL::to('create') }}">form</a></li>-->
 									<!-- <li><a href="{{ URL::to('score') }}">score</a></li> -->
-						             <li><a href="{{ URL::to('test') }}">test</a></li> 
+						            <!-- <li><a href="{{ URL::to('test') }}">test</a></li>-->
 							       </ul>
                             </div>
                         </div>
