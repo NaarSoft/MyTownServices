@@ -77,7 +77,6 @@ function bindEvents() {
         var is_valid = $("#form-location").valid();
         if(is_valid){
             saveLocation(0);
-            $("html, body").animate({scrollTop: 0}, "slow");
         } else {
             return false;
         }
@@ -87,7 +86,6 @@ function bindEvents() {
         var is_valid = $("#form-update-location").valid();
         if(is_valid){
             updateLocation(0);
-            $("html, body").animate({scrollTop: 0}, "slow");
         }
     });
 
@@ -405,6 +403,9 @@ function deleteLocationConfirmed(locationId) {
         },
         success: function (data) {
             if(data.success == true) {
+                $("#div_response_location").css('display', '');
+                $("#div_response_location").removeClass('alert-warning').addClass('alert-success');
+                $("#div_response_location").html('Location deleted successfully');
                 populateLocationGrid();
             }  else {
                 if(data.error.length > 0){
