@@ -11,7 +11,7 @@
                                     <li><a href="{{ URL::to('aboutus') }}">ABOUT MYTOWN</a></li>
 									 <li><a href="{{ URL::to('location') }}">LOCATIONS</a></li>
 									  <li><a href="{{ URL::to('trauma') }}">TRAUMA</a></li>
-                                    <li><a href="{{ URL::to('services') }}">SERVICES</a></li>
+                                    <li><a href="{{ URL::to('service') }}">SERVICES</a></li>
                                     <li><a href="{{ URL::to('contactus') }}">CONTACT</a></li>
 									 <!--<li><a href="{{ URL::to('create') }}">form</a></li>-->
 									<!-- <li><a href="{{ URL::to('score') }}">score</a></li> -->
