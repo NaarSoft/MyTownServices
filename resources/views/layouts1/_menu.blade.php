@@ -8,14 +8,14 @@
                             <div class="mainmenu">
                                 <ul id="mainmenu">
                                     <li><a href="{{ URL::to('home') }}">HOME</a></li>
-                                    <li><a href="{{ URL::to('aboutus') }}">ABOUT MY TOWN</a></li>
+                                    <li><a href="{{ URL::to('aboutus') }}">ABOUT MYTOWN</a></li>
 									 <li><a href="{{ URL::to('location') }}">LOCATIONS</a></li>
 									  <li><a href="{{ URL::to('trauma') }}">TRAUMA</a></li>
                                     <li><a href="{{ URL::to('service') }}">SERVICES</a></li>
                                     <li><a href="{{ URL::to('contactus') }}">CONTACT</a></li>
 									 <!--<li><a href="{{ URL::to('create') }}">form</a></li>-->
-							 <!--<li><a href="{{ URL::to('score') }}">score</a></li> -->
-						             <!--<li><a href="{{ URL::to('test') }}">test</a></li> -->
+									<!-- <li><a href="{{ URL::to('score') }}">score</a></li> -->
+						            <!-- <li><a href="{{ URL::to('test') }}">test</a></li>-->
 							       </ul>
                             </div>
                         </div>

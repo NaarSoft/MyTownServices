@@ -134,7 +134,7 @@
             <div class="row">
                 <div class="col-sm-2">
                     <div class="logo">
-                        <a href="{{URL::to('home')}}"><img src="{{ asset('public/assets/images/mytown-logo.png')}}" alt=""></a>
+                        <a href="{{URL::to('home')}}"><img src="{{ asset('public/assets/images/mtsnewLogo.png')}}" alt=""></a>
                     </div>
                 </div>
                 <div class="col-md-6 col-md-offset-4 col-sm-10">

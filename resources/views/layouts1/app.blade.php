@@ -75,7 +75,7 @@
         <div class="row">
             <div class="col-sm-2">
                 <div class="logo">
-                    <a href="{{URL::to('home') }}"><img src="{{ asset('public/assets/images/mytown-logo.png')}}" alt=""></a>
+                    <a href="{{URL::to('home') }}"><img src="{{ asset('public/assets/images/mtsnewLogo.png')}}" alt=""></a>
                 </div>
             </div>
             <div class="col-md-8 col-md-offset-2 col-sm-10">
@@ -188,7 +188,7 @@
             </div>
         </div>
     </div>
-</div>
+</div
 <script type="text/javascript" src="{{ asset('public/assets/js/common.js') }}"></script>
 </body>
 </html>
