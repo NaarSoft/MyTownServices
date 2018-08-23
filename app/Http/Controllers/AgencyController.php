@@ -1,3 +1,4 @@
+//code added by NaarSoft
 <?php
 
 namespace App\Http\Controllers;
